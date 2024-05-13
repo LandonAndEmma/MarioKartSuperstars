@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://pyrxvsxv7jdo"]
+
+[ext_resource type="Script" path="res://Title.gd" id="1_2wja6"]
+[ext_resource type="Texture2D" uid="uid://slwr4gs3rttp" path="res://Sprites/Logo.png" id="1_tq2sc"]
+[ext_resource type="AudioStream" uid="uid://c0pnlpmem04c3" path="res://Music/Title.mp3" id="2_5wey1"]
+[ext_resource type="Texture2D" uid="uid://c2qnboyr1xgks" path="res://Sprites/background.png" id="3_2melr"]
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_2wja6")
+
+[node name="Title Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5wey1")
+autoplay = true
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Background2" type="Sprite2D" parent="Canvas"]
+show_behind_parent = true
+position = Vector2(972, 324)
+scale = Vector2(6.75, 6.75)
+texture = ExtResource("3_2melr")
+
+[node name="Background" type="Sprite2D" parent="Canvas"]
+show_behind_parent = true
+position = Vector2(324, 324)
+scale = Vector2(6.75, 6.75)
+texture = ExtResource("3_2melr")
+
+[node name="Logo" type="Sprite2D" parent="Canvas"]
+position = Vector2(648, 276)
+scale = Vector2(0.488847, 0.490266)
+texture = ExtResource("1_tq2sc")
+
+[node name="Button" type="Button" parent="Canvas"]
+offset_left = 479.0
+offset_top = 450.0
+offset_right = 588.0
+offset_bottom = 490.0
+scale = Vector2(3, 3)
+text = "Click To Start"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Canvas/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3jlvmhwl7gwx"
+path="res://.godot/imported/Mushroom Bridge.mp3-7f4566253883c46c8e4b456475f4ed0b.mp3str"
+
+[deps]
+
+source_file="res://Music/Mushroom Bridge.mp3"
+dest_files=["res://.godot/imported/Mushroom Bridge.mp3-7f4566253883c46c8e4b456475f4ed0b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

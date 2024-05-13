@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=3 uid="uid://cj834c2udq5im"]
+
+[ext_resource type="PackedScene" uid="uid://j4x7073a21kq" path="res://Racetracks/SchoolTrack/SchoolTrack.glb" id="1_oy6jq"]
+[ext_resource type="Script" path="res://Script/SchoolTrack.gd" id="1_p7xrq"]
+[ext_resource type="AudioStream" uid="uid://btp1uj5ray2yl" path="res://Music/Academic Raceway.mp3" id="2_eomls"]
+[ext_resource type="AudioStream" uid="uid://b8dgv3y5xywnl" path="res://Sounds/engine3.wav" id="3_cj2nx"]
+[ext_resource type="PackedScene" uid="uid://6j4e6bak0l2c" path="res://Kart/Kart.glb" id="4_3isc4"]
+[ext_resource type="Script" path="res://Script/Kart.gd" id="4_rwqjy"]
+[ext_resource type="PackedScene" uid="uid://748gt1jwg22y" path="res://Kart/Tire.glb" id="5_runc7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p0stl"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[sub_resource type="Environment" id="Environment_tf01v"]
+ambient_light_energy = 4.0
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+fog_enabled = true
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.001
+volumetric_fog_emission = Color(0.517647, 0.552941, 0.607843, 1)
+
+[node name="SchoolTrack" type="Node3D"]
+script = ExtResource("1_p7xrq")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_eomls")
+autoplay = true
+
+[node name="SchoolTrack" parent="." instance=ExtResource("1_oy6jq")]
+disable_mode = 1
+
+[node name="Car" type="VehicleBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60.847, 0.242, 228.938)
+disable_mode = 1
+angular_damp = 25.0
+script = ExtResource("4_rwqjy")
+
+[node name="Kart" parent="Car" instance=ExtResource("4_3isc4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
+transform = Transform3D(1.5, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_p0stl")
+
+[node name="front_left_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.903999, 0.0919991, 1.157)
+use_as_traction = true
+use_as_steering = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/front_left_wheel" instance=ExtResource("5_runc7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="front_right_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.903587, 0.0918808, 1.15675)
+use_as_traction = true
+use_as_steering = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/front_right_wheel" instance=ExtResource("5_runc7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="back_left_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.983421, 0.258942, -0.790344)
+use_as_traction = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/back_left_wheel" instance=ExtResource("5_runc7")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="back_right_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.983002, 0.259001, -0.789993)
+use_as_traction = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/back_right_wheel" instance=ExtResource("5_runc7")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="FirstPerson" type="Camera3D" parent="Car"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.33398, 0)
+doppler_tracking = 2
+current = true
+
+[node name="ThirdPerson" type="Camera3D" parent="Car"]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 6.98178e-08, 1.71046, -4.59862)
+environment = SubResource("Environment_tf01v")
+doppler_tracking = 2
+current = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Car"]
+stream = ExtResource("3_cj2nx")
+max_db = 0.0
+autoplay = true

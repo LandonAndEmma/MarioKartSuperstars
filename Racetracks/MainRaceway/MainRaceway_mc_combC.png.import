@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://cewb7re43skbb"
+path.s3tc="res://.godot/imported/MainRaceway_mc_combC.png-4745ee0465b006df665cdcd236d54231.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "001a72b7f47f19c7438b7cf211cf4f73"
+}
+
+[deps]
+
+source_file="res://Racetracks/MainRaceway/MainRaceway_mc_combC.png"
+dest_files=["res://.godot/imported/MainRaceway_mc_combC.png-4745ee0465b006df665cdcd236d54231.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

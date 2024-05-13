@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://hl3pl73mwb20"
+path="res://.godot/imported/Mario Circuit.mp3-a85634540414a618cbea5ceb405fd5bd.mp3str"
+
+[deps]
+
+source_file="res://Music/Mario Circuit.mp3"
+dest_files=["res://.godot/imported/Mario Circuit.mp3-a85634540414a618cbea5ceb405fd5bd.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

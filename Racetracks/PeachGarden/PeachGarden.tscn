@@ -1,0 +1,104 @@
+[gd_scene load_steps=10 format=3 uid="uid://yftulqfo12nc"]
+
+[ext_resource type="PackedScene" uid="uid://bfducd4vvlucp" path="res://Racetracks/PeachGarden/PeachGarden.glb" id="1_4ckbo"]
+[ext_resource type="Script" path="res://Script/PeachGarden.gd" id="1_x3aq4"]
+[ext_resource type="AudioStream" uid="uid://ytj87meaybjn" path="res://Music/Peach Gardens.mp3" id="2_jphi7"]
+[ext_resource type="AudioStream" uid="uid://b8dgv3y5xywnl" path="res://Sounds/engine3.wav" id="4_isfd8"]
+[ext_resource type="Script" path="res://Script/Kart.gd" id="4_p6osy"]
+[ext_resource type="PackedScene" uid="uid://6j4e6bak0l2c" path="res://Kart/Kart.glb" id="4_pwb88"]
+[ext_resource type="PackedScene" uid="uid://748gt1jwg22y" path="res://Kart/Tire.glb" id="5_6fcwi"]
+
+[sub_resource type="Environment" id="Environment_hpofo"]
+background_mode = 1
+background_color = Color(0, 0.347447, 0.586686, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_tthiq"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="PeachGarden" type="Node3D"]
+script = ExtResource("1_x3aq4")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jphi7")
+autoplay = true
+
+[node name="PeachGarden" parent="." instance=ExtResource("1_4ckbo")]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.875, -0.00425887, 0.484104, 0.12941, 0.961516, 0.242363, -0.466506, 0.274715, -0.840776, 197.871, 141.453, -247.04)
+shadow_enabled = true
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hpofo")
+
+[node name="Car" type="VehicleBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.324, 62.7687, -104.921)
+disable_mode = 1
+angular_damp = 25.0
+script = ExtResource("4_p6osy")
+
+[node name="Kart" parent="Car" instance=ExtResource("4_pwb88")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
+transform = Transform3D(1.5, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_tthiq")
+
+[node name="front_left_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.903999, 0.0919991, 1.157)
+use_as_traction = true
+use_as_steering = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/front_left_wheel" instance=ExtResource("5_6fcwi")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="front_right_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.903587, 0.0918808, 1.15675)
+use_as_traction = true
+use_as_steering = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/front_right_wheel" instance=ExtResource("5_6fcwi")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="back_left_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.983421, 0.258942, -0.790344)
+use_as_traction = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/back_left_wheel" instance=ExtResource("5_6fcwi")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="back_right_wheel" type="VehicleWheel3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.983002, 0.259001, -0.789993)
+use_as_traction = true
+suspension_travel = 2.0
+damping_compression = 2.0
+damping_relaxation = 2.0
+
+[node name="Tire" parent="Car/back_right_wheel" instance=ExtResource("5_6fcwi")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="FirstPerson" type="Camera3D" parent="Car"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1.33398, 0)
+doppler_tracking = 2
+current = true
+
+[node name="ThirdPerson" type="Camera3D" parent="Car"]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 6.98178e-08, 1.71046, -4.59862)
+doppler_tracking = 2
+current = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Car"]
+stream = ExtResource("4_isfd8")
+max_db = 0.0
+autoplay = true
